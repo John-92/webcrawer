@@ -6,10 +6,21 @@
 import codecs
 import csv
 
-csv_list=[]
+# csv_list=[]
+# with open('test1.csv') as f:
+#     for row in csv.DictReader(f, skipinitialspace=True):
+#         next(row)
+#         if row["process-id"]=='aaaa-test':
+#             csv_list.append(row)
+# print(len(csv_list))
+# print(csv_list)
+
+
 with open('test1.csv') as f:
-    for row in csv.DictReader(f, skipinitialspace=True):
-        if row["process-id"]=='aaaa-test':
-            csv_list.append(row)
-print(len(csv_list))
-print(csv_list)
+    reader = csv.reader(f)
+    print(type(reader))
+    row1 = next(reader)
+
+
+    # print(next(row1))
+
