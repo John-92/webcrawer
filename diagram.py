@@ -12,8 +12,6 @@ class Node():
     self.id = id
     self.startpoint=startpoint
     self.name = self.id + "_di"
-    self.width = 0
-    self.height = 0
     self.startpoint_x, self.startpoint_y = self.startpoint
     # self.endpoint = (int(self.startpoint_x + self.width / 2), int(self.startpoint_y + self.height))
     self.width = 54
@@ -25,7 +23,7 @@ class sequenceFlow(Node):
   def __init__(self,id,startpoint):
     super(sequenceFlow, self).__init__(id,startpoint)
     self.width = 54
-    self.endpoint = (int(self.startpoint_x + self.width / 2), int(self.startpoint_y + self.height))
+    self.endpoint = (int(self.startpoint_x + self.width) / 2, int(self.startpoint_y + self.height))
     # self.startpoint = (236, 168)
 
   def process_xml(self,parentnode,sourceRef,targetRef):

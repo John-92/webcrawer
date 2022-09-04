@@ -7,14 +7,21 @@
 import csv
 import json
 filename="test.csv"
+#对csv文件内的内容全部打印出来
 with open(filename) as f:
     pipeline={}
 
     node = []
     for row in csv.DictReader(f, skipinitialspace=True):
         #1、较好的方式，if 多个条件，一旦前面一个条件不成立，后面的条件直接不会执行
-        if len(pipeline)!=0 and row["pipename"] != node[0]["pipeline"]:
-            break
+        if len(pipeline)!=0 and row["pipename"] != node[len(node)-1]["pipeline"]:
+            json_data = json.dumps(pipeline)
+            with open('res.json', 'w') as f_six:
+                f_six.write(json_data)
+            pipeline = {}
+            node = []
+            #下一行循环
+            continue
         subnode = {}
         if len(pipeline)==0:
             pipeline["diagram"]=row["diagram"]
@@ -38,6 +45,3 @@ with open(filename) as f:
         # else:
         #     break
         # print(pipeline)
-        json_data=json.dumps(pipeline)
-        with open('res.json', 'w') as f_six:
-            f_six.write(json_data)
